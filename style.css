@@ -35,3 +35,16 @@ button {
   border-radius: 5px;
   box-shadow: 2px 5px 5px #333;
 }
+
+li[data-priority = "1"]{
+  color: red;
+}
+
+li[data-priority = "2"]{
+  color: orange;
+}
+
+li[data-priority = "3"]{
+  color: green;
+}
+
