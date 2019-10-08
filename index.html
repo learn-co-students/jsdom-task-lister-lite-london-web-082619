@@ -12,6 +12,12 @@
     <form id="create-task-form" action="#" method="post">
       <label for="new-task-description">Task description:</label>
       <input type="text" id="new-task-description" name="new-task-description" placeholder="description">
+      <select name="Priority selector" id="task-priority-select">
+        <option value="1">High</option>
+        <option value="2">Medium</option>
+        <option value="3">Low</option>
+      </select>
+      <input type="date" name="submit-date">
       <input type="submit" value="Create New Task">
     </form>
 
@@ -20,6 +26,10 @@
       <ul id="tasks">
       </ul>
     </div>
+
+    <form id="order-tasks" action="#" method="post">
+      <input type="submit" value="Order Tasks By Priority">
+    </form>
 
     <script src="./src/index.js"></script>
   </div>
