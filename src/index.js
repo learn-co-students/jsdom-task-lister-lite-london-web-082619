@@ -60,9 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
   priorityButton.addEventListener("click", orderTasks)
 
   function orderTasks(){
+    event.preventDefault();
+
     priorityHash = sortEventsByPriority()
-    destroyExistingNodes()
-    appendNewNodes(priorityHash)
+    deleteListItems()
+    addNewElements(priorityHash)
   }
 
   function sortEventsByPriority() {
@@ -81,22 +83,20 @@ document.addEventListener("DOMContentLoaded", () => {
     return priorityHash
   }
 
-  function destroyExistingNodes() {
-    nodes = tasks.childNodes
-    for (let i=0; i < nodes.length; i++){
-      nodes[i].remove()
-    }
+  function deleteListItems() {
+    let listItems = document.getElementById("tasks")
+    listItems.innerHTML = ""
   }
 
-  function appendNewNodes(priorityHash){
-  
-    priorities = ["red", "orange", "green"]
+  function addNewElements(priorityHash) {
+    let priorities = ["red", "orange", "green"]
 
-    for (let i=0; i<priorities.length; i++) {
-      for (let j=0; j<priorityHash[priorities[i]].length; j++){
-        tasks.appendChild(priorityHash[[priorities[i]][j])
+    for (let i=0; i < priorities.length; i++) {
+      for (let j=0; j < priorityHash[priorities[i]].length; j++) {
+        tasks.appendChild(priorityHash[priorities[i]][j]);
       }
     }
+    
   }
 
 });
