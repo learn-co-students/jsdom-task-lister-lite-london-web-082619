@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     priorityHash = sortEventsByPriority()
     deleteListItems()
-    addNewElements(priorityHash)
+    addTasksInOrder(priorityHash)
   }
 
   function sortEventsByPriority() {
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     listItems.innerHTML = ""
   }
 
-  function addNewElements(priorityHash) {
+  function addTasksInOrder(priorityHash) {
     let priorities = ["red", "orange", "green"]
 
     for (let i=0; i < priorities.length; i++) {
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tasks.appendChild(priorityHash[priorities[i]][j]);
       }
     }
-    
+
   }
 
 });
