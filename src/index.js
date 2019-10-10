@@ -21,41 +21,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  function createToDo(){
-    newToDo = tasks.appendChild(document.createElement('li'));
-    newToDo.innerHTML = document.getElementById('new-task-description').value;
-    newToDo.id = idCounter;
-    idCounter += 1;
-    return newToDo;
-  }
-
-  function createButton() {
-    button = document.createElement('button');
-    button.innerHTML = 'X';
-    button.id = `button-${idCounter-1}`;
-    newToDo.appendChild(button);
-    button.addEventListener("click", handleRemove)
-  }
-
-  function handleRemove(event){
-    event.preventDefault();
-    listItem = event.target.parentElement;
-    listItem.remove()
-  }
-  
-  function changeColour(newToDo){
-    if (newToDo.priority == "1") {
-      newToDo.style.color = "red";
-    } else if (newToDo.priority == "2") {
-      newToDo.style.color = "orange";
-    } else {
-      newToDo.style.color = "green";
+    function createToDo(){
+      newToDo = tasks.appendChild(document.createElement('li'));
+      newToDo.innerHTML = document.getElementById('new-task-description').value;
+      newToDo.id = idCounter;
+      idCounter += 1;
+      return newToDo;
     }
-  }
+  
+    function changeColour(newToDo){
+      if (newToDo.priority == "1") {
+        newToDo.style.color = "red";
+      } else if (newToDo.priority == "2") {
+        newToDo.style.color = "orange";
+      } else {
+        newToDo.style.color = "green";
+      }
+    }
 
-  function addDate(newToDo) {
-    newToDo.textContent += ` - ${newToDo.date}`
-  }
+    function addDate(newToDo) {
+      newToDo.textContent += ` - ${newToDo.date}`
+    }
+
+    function createButton() {
+      button = document.createElement('button');
+      button.innerHTML = 'X';
+      button.id = `button-${idCounter-1}`;
+      newToDo.appendChild(button);
+      button.addEventListener("click", handleRemove)
+    }
+
+    function handleRemove(event){
+      event.preventDefault();
+      listItem = event.target.parentElement;
+      listItem.remove()
+    }
 
   priorityButton.addEventListener("click", orderTasks)
 
@@ -67,36 +67,34 @@ document.addEventListener("DOMContentLoaded", () => {
     addTasksInOrder(priorityHash)
   }
 
-  function sortEventsByPriority() {
-    priorityHash = {"green": [], "orange": [], "red": []}
-    nodes = tasks.childNodes
+    function sortEventsByPriority() {
+      priorityHash = {"green": [], "orange": [], "red": []}
+      nodes = tasks.childNodes
 
-    for (let i=0; i < tasks.childNodes.length; i++) {
-      if (nodes[i].priority == "3") {
-        priorityHash["green"].push(nodes[i]);
-      } else if (nodes[i].priority == "2") {
-        priorityHash["orange"].push(nodes[i]);
-      } else {
-        priorityHash["red"].push(nodes[i]);
+      for (let i=0; i < tasks.childNodes.length; i++) {
+        if (nodes[i].priority == "3") {
+          priorityHash["green"].push(nodes[i]);
+        } else if (nodes[i].priority == "2") {
+          priorityHash["orange"].push(nodes[i]);
+        } else {
+          priorityHash["red"].push(nodes[i]);
+        }
       }
-    }
-    return priorityHash
-  }
-
-  function deleteListItems() {
-    let listItems = document.getElementById("tasks")
-    listItems.innerHTML = ""
-  }
-
-  function addTasksInOrder(priorityHash) {
-    let priorities = ["red", "orange", "green"]
-
-    for (let i=0; i < priorities.length; i++) {
-      for (let j=0; j < priorityHash[priorities[i]].length; j++) {
-        tasks.appendChild(priorityHash[priorities[i]][j]);
-      }
+      return priorityHash
     }
 
-  }
+    function deleteListItems() {
+      let listItems = document.getElementById("tasks")
+      listItems.innerHTML = ""
+    }
+
+    function addTasksInOrder(priorityHash) {
+      let priorities = ["red", "orange", "green"]
+      for (let i=0; i < priorities.length; i++) {
+        for (let j=0; j < priorityHash[priorities[i]].length; j++) {
+          tasks.appendChild(priorityHash[priorities[i]][j]);
+        }
+      }
+    }
 
 });
